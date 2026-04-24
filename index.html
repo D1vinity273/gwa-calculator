@@ -693,7 +693,8 @@ function clearGrades() {
 }
 
 function getRemark(gwa) {
-  if      (gwa >= 3.75) return ['🏆 Excellent',        'remark-excellent'];
+  if      (gwa >= 3.90) return ['🔥 Godlike',        'remark-close to Franco Isip'];
+  else if (gwa >= 3.75) return ['🏆 Excellent',        'remark-excellent'];
   else if (gwa >= 3.0)  return ['👍 Good',              'remark-good'];
   else if (gwa >= 2.0)  return ['📘 Average',           'remark-average'];
   else                   return ['⚠️ Needs improvement', 'remark-poor'];
