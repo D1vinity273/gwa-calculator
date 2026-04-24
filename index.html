@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +35,6 @@
     padding: 0 0 60px;
   }
 
-  /* ─── Header ─── */
   .app-header {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
@@ -69,10 +69,8 @@
     flex-shrink: 0;
   }
 
-  /* ─── Layout ─── */
   .wrap { max-width: 960px; margin: 0 auto; padding: 28px 20px; }
 
-  /* ─── Tabs ─── */
   .mode-tabs {
     display: flex;
     gap: 4px;
@@ -101,7 +99,6 @@
   }
   .mode-tab:hover:not(.active) { color: var(--text); }
 
-  /* ─── Scope selector ─── */
   .selector-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -140,7 +137,6 @@
   .sel-btn.active { background: var(--accent); border-color: var(--accent); color: var(--cream); }
   .sel-divider { width: 1px; height: 24px; background: var(--border2); margin: 0 3px; }
 
-  /* ─── Result card ─── */
   .result-card {
     background: var(--surface2);
     border: 1px solid var(--border2);
@@ -173,7 +169,6 @@
   .remark-average   { background: rgba(160,140,60,0.2); color: #d4c06a; border: 1px solid rgba(180,160,60,0.3); }
   .remark-poor      { background: rgba(192,98,74,0.2); color: #e08070; border: 1px solid rgba(192,98,74,0.3); }
 
-  /* ─── Grade table ─── */
   .grade-table { width: 100%; border-collapse: collapse; font-size: 13px; }
   .grade-table thead tr th {
     background: var(--forest1);
@@ -209,7 +204,6 @@
     border-bottom: 1px solid var(--border2);
   }
 
-  /* ─── Grade input ─── */
   .grade-input {
     width: 72px;
     padding: 6px 8px;
@@ -226,7 +220,6 @@
   .grade-input.invalid { border-color: var(--danger); background: rgba(192,98,74,0.1); }
   .grade-input::placeholder { color: var(--text-dim); }
 
-  /* ─── Action buttons ─── */
   .action-row { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
   .btn-primary {
     padding: 11px 28px;
@@ -254,7 +247,6 @@
   }
   .btn-secondary:hover { border-color: var(--accent); color: var(--text); }
 
-  /* ─── Manual mode ─── */
   .manual-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -331,7 +323,6 @@
     padding-left: 2px;
   }
 
-  /* ─── Placeholder ─── */
   #placeholder-text {
     color: var(--text-dim);
     margin-top: 24px;
@@ -345,7 +336,6 @@
   .table-wrap { border-radius: 12px; overflow: hidden; border: 1px solid var(--border2); }
   .hidden { display: none; }
 
-  /* ─── Scrollbar ─── */
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--forest1); border-radius: 3px; }
@@ -369,16 +359,13 @@
 
 <div class="wrap">
 
-  <!-- Mode tabs -->
   <div class="mode-tabs">
     <button class="mode-tab active" id="tab-curriculum" onclick="switchMode('curriculum')">Curriculum Mode</button>
     <button class="mode-tab" id="tab-manual" onclick="switchMode('manual')">Manual Entry</button>
   </div>
 
-  <!-- ══ CURRICULUM MODE ══ -->
   <div id="mode-curriculum">
 
-    <!-- Scope selector -->
     <div class="selector-card">
       <div class="selector-label">Select term or year</div>
       <div class="selector-row" id="selector-row">
@@ -426,7 +413,6 @@
       </div>
     </div>
 
-    <!-- Grade table -->
     <div id="grade-section" class="hidden">
       <div class="table-wrap">
         <table class="grade-table" id="grade-table">
@@ -435,7 +421,7 @@
               <th style="width:110px">Code</th>
               <th>Subject</th>
               <th class="center" style="width:60px">Units</th>
-              <th class="center" style="width:120px">Grade (1.0–4.0)</th>
+              <th class="center" style="width:120px">Grade</th>
             </tr>
           </thead>
           <tbody id="grade-tbody"></tbody>
@@ -450,7 +436,6 @@
     <p id="placeholder-text">👆 Select a term or year above to get started</p>
   </div>
 
-  <!-- ══ MANUAL MODE ══ -->
   <div id="mode-manual" class="hidden">
 
     <div class="manual-card">
@@ -465,7 +450,6 @@
       <button class="add-course-btn" onclick="addManualRow()">+ Add course</button>
     </div>
 
-    <!-- Result manual -->
     <div class="result-card hidden" id="result-card-manual">
       <div>
         <div class="result-scope">Manual GWA Result</div>
@@ -487,10 +471,14 @@
     </div>
   </div>
 
-</div><!-- /wrap -->
+</div>
+
+<footer style="text-align:center;padding:28px 20px 40px;border-top:1px solid rgba(240,237,202,0.08);margin-top:40px;">
+  <span style="font-family:'Trebuchet MS',sans-serif;font-size:13px;color:rgba(240,237,202,0.35);letter-spacing:0.12em;">D1vinity 2026.</span>
+</footer>
+
 
 <script>
-// ─── Curriculum data ───────────────────────────────────────────
 const curriculum = [
   {year:1,term:1,courses:[
     {code:"CCS0001",  title:"Introduction to Computing (Lec)",                              units:2},
@@ -606,7 +594,6 @@ const termNames = ["","1st Term","2nd Term","3rd Term"];
 
 let currentYear = 'all', currentTerm = 'all';
 
-// ─── Mode switch ───────────────────────────────────────────────
 function switchMode(m) {
   document.getElementById('mode-curriculum').classList.toggle('hidden', m !== 'curriculum');
   document.getElementById('mode-manual').classList.toggle('hidden', m !== 'manual');
@@ -614,7 +601,6 @@ function switchMode(m) {
   document.getElementById('tab-manual').classList.toggle('active', m === 'manual');
 }
 
-// ─── Curriculum mode ──────────────────────────────────────────
 function selectScope(btn, year, term) {
   document.querySelectorAll('.sel-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -706,13 +692,11 @@ function clearGrades() {
   document.getElementById('result-card').classList.add('hidden');
 }
 
-// ─── Remark logic (4.0 = highest/best) ────────────────────────
 function getRemark(gwa) {
-  // 4.0 is the best grade in this scale
-  if      (gwa >= 3.75) return ['🏆 Excellent',     'remark-excellent'];
-  else if (gwa >= 3.0)  return ['👍 Good',           'remark-good'];
-  else if (gwa >= 2.0)  return ['📘 Average',        'remark-average'];
-  else                   return ['⚠️ Needs improvement','remark-poor'];
+  if      (gwa >= 3.75) return ['🏆 Excellent',        'remark-excellent'];
+  else if (gwa >= 3.0)  return ['👍 Good',              'remark-good'];
+  else if (gwa >= 2.0)  return ['📘 Average',           'remark-average'];
+  else                   return ['⚠️ Needs improvement', 'remark-poor'];
 }
 
 function showResult(gwa, filled, totalUnits, totalWeighted, scopeLabel, cardId, scopeId, gwaId, descId, remarkId, unitsId, weightedId) {
@@ -731,7 +715,6 @@ function showResult(gwa, filled, totalUnits, totalWeighted, scopeLabel, cardId, 
   card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-// ─── Manual mode ──────────────────────────────────────────────
 let manualRowId = 0;
 
 function addManualRow(name='', units='', grade='') {
@@ -766,7 +749,7 @@ function computeManualGWA() {
     inputs[1].classList.remove('invalid');
     inputs[2].classList.remove('invalid');
 
-    if (!inputs[2].value) return; // skip blank grades
+    if (!inputs[2].value) return;
 
     if (isNaN(unitsVal) || unitsVal <= 0) {
       inputs[1].classList.add('invalid'); hasInvalid = true; return;
@@ -786,24 +769,19 @@ function computeManualGWA() {
   showResult(gwa, filled, totalUnits, totalWeighted,
     'Manual Entry GWA', 'result-card-manual', 'result-scope-label',
     'manual-gwa-value', 'manual-desc', 'manual-remark', 'manual-units-val', 'manual-weighted');
-  // fix: re-point scopeId isn't used in manual showResult, the label is hardcoded — that's fine
 }
 
 function clearManual() {
   document.getElementById('manual-courses').innerHTML = '';
   document.getElementById('result-card-manual').classList.add('hidden');
   manualRowId = 0;
-  // add 3 blank rows
   addManualRow(); addManualRow(); addManualRow();
 }
 
-// ─── Init ─────────────────────────────────────────────────────
 (function init() {
-  // Start curriculum mode showing all years, table visible
   document.getElementById('placeholder-text').classList.add('hidden');
   document.getElementById('grade-section').classList.remove('hidden');
   buildTable('all','all');
-  // Seed manual mode with 3 blank rows
   addManualRow(); addManualRow(); addManualRow();
 })();
 </script>
